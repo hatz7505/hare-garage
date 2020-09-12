@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
 import ParkingLot from "./ParkingLot";
+import { Button, Container, Row, Col } from "reactstrap";
 
 function App() {
   const [formData, setFormData] = useState({ region: "" });
   const [parkingLots, setParkingLots] = useState([]);
+  const [error, setError] = useState("");
 
   const API_KEY =
     "mi5qSSqdhmrNXBjLq5MBMwuqcS0q8aE4u52fwqrG8CkrBjjksgdV8ZblHdh4ThtDqQVFapfOwrCqadcTH4sJIMhQgEcWpc0bK_9ms_rJ1H-xMT1Amp4tmH_PhAg3X3Yx";
@@ -17,7 +19,7 @@ function App() {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-
+    setParkingLots([]);
     try {
       let result = await axios.get(
         `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=parkinglots&location=${formData.region}`,
@@ -27,26 +29,37 @@ function App() {
       let lowLotsArr = lotsArr.filter((lot) => lot.rating && lot.rating <= 3.5);
       setParkingLots(lowLotsArr);
     } catch (err) {
-      console.error(err);
+      setError("Please try searching a different region");
     }
   }
 
   return (
     <div className="App">
-      <h1>HareGarage</h1>
+      <h1 className="title">HareGarage</h1>
       <h3>Find the lowest-rated parking lots near you!</h3>
       <form onSubmit={handleSubmit}>
-        <label>Enter a region to begin</label>
+        <label className="input-label">Enter a region to begin</label>
         <input
           name="region"
           value={formData.region}
           onChange={handleChange}
         ></input>
-        <button>let's go!</button>
+        <Button className="search-button" size="sm" color="info">
+          Let's go!
+        </Button>
+        {error.length ? <div className="error">{error}</div> : null}
       </form>
-      <div className="parking-lots-container">
-      {parkingLots.length ? parkingLots.map((lot) => <ParkingLot lot={lot} key={lot.id}/>) : null}
-      </div>
+      <Container className="lots-container">
+        <Row>
+          {parkingLots.length
+            ? parkingLots.map((lot) => (
+                <Col sm="4">
+                  <ParkingLot lot={lot} key={lot.id} />
+                </Col>
+              ))
+            : null}
+        </Row>
+      </Container>
     </div>
   );
 }

@@ -2,3 +2,61 @@
   text-align: center;
 }
 
+.title {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.input-label {
+  margin-right: 10px;
+  margin-top: 25px;
+}
+
+.search-button {
+  margin-left: 10px;
+}
+
+.image {
+  height: 350px;
+}
+
+.lot-text {
+  display: block;
+}
+
+.lot-name {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.lot-address {
+  font-style: italic;
+}
+
+.parking-score {
+  font-weight: bold;
+}
+
+.lots-container {
+  margin-top: 10px;
+}
+
+.link {
+  color: teal;
+}
+
+.link:hover {
+  color: rgb(3, 61, 61);
+  text-decoration: none;
+}
+
+.lot-card {
+  margin-top: 20px;
+  -webkit-box-shadow: -9px 9px 22px -10px rgba(0,0,0,1);
+-moz-box-shadow: -9px 9px 22px -10px rgba(0,0,0,1);
+box-shadow: -9px 9px 22px -10px rgba(0,0,0,1);
+height: 600px;
+}
