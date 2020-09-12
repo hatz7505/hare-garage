@@ -44,9 +44,9 @@ function App() {
         ></input>
         <button>let's go!</button>
       </form>
-      <ul>
-      {parkingLots.length ? parkingLots.map((lot) => <ParkingLot lot={lot}/>) : null}
-      </ul>
+      <div className="parking-lots-container">
+      {parkingLots.length ? parkingLots.map((lot) => <ParkingLot lot={lot} key={lot.id}/>) : null}
+      </div>
     </div>
   );
 }
