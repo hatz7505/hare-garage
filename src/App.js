@@ -31,6 +31,7 @@ function App() {
       );
       let lotsArr = result.data.businesses;
       let lowLotsArr = lotsArr.filter((lot) => lot.rating && lot.rating <= 3.5);
+      setError("");
       setParkingLots(lowLotsArr);
     } catch (err) {
       setError("Please try searching a different region");
