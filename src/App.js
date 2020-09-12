@@ -60,7 +60,7 @@ function App() {
         <Row>
           {parkingLots.length
             ? parkingLots.map((lot) => (
-                <Col sm="4">
+                <Col key={lot.url}sm="4">
                   <ParkingLot lot={lot} key={lot.id} />
                 </Col>
               ))
