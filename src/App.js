@@ -3,11 +3,14 @@ import "./App.css";
 import axios from "axios";
 import ParkingLot from "./ParkingLot";
 import { Button, Container, Row, Col } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const [formData, setFormData] = useState({ region: "" });
   const [parkingLots, setParkingLots] = useState([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const API_KEY =
     "mi5qSSqdhmrNXBjLq5MBMwuqcS0q8aE4u52fwqrG8CkrBjjksgdV8ZblHdh4ThtDqQVFapfOwrCqadcTH4sJIMhQgEcWpc0bK_9ms_rJ1H-xMT1Amp4tmH_PhAg3X3Yx";
@@ -20,6 +23,7 @@ function App() {
   async function handleSubmit(evt) {
     evt.preventDefault();
     setParkingLots([]);
+    setIsLoading(true);
     try {
       let result = await axios.get(
         `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=parkinglots&location=${formData.region}`,
@@ -31,6 +35,7 @@ function App() {
     } catch (err) {
       setError("Please try searching a different region");
     }
+    setIsLoading(false);
   }
 
   return (
@@ -50,6 +55,7 @@ function App() {
         {error.length ? <div className="error">{error}</div> : null}
       </form>
       <Container className="lots-container">
+        {isLoading ? <FontAwesomeIcon className="loading fa-spin" icon={faSpinner} /> : null}
         <Row>
           {parkingLots.length
             ? parkingLots.map((lot) => (

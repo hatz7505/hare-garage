@@ -55,8 +55,14 @@
 
 .lot-card {
   margin-top: 20px;
-  -webkit-box-shadow: -9px 9px 22px -10px rgba(0,0,0,1);
--moz-box-shadow: -9px 9px 22px -10px rgba(0,0,0,1);
-box-shadow: -9px 9px 22px -10px rgba(0,0,0,1);
-height: 600px;
+  -webkit-box-shadow: -9px 9px 22px -10px rgba(0, 0, 0, 1);
+  -moz-box-shadow: -9px 9px 22px -10px rgba(0, 0, 0, 1);
+  box-shadow: -9px 9px 22px -10px rgba(0, 0, 0, 1);
+  height: 600px;
+}
+
+.loading {
+  margin-top: 50px;
+  font-size: 150px;
+  color: #17a2b8;
 }
